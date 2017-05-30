@@ -3,17 +3,21 @@
 class Tree {
     
     private _div: HTMLElement;
+    private game:Game;
     private x:number;
     private y:number;
     private width:number;
     private height:number;
     private speed:number;
+    public chickens:Array<Chicken>;
 
     public get div(): HTMLElement {
 		return this._div;
 	}
 
-    constructor(x:number, y:number) {
+    constructor(g:Game, x:number, y:number) {
+        this.game = g;
+
         this._div = document.createElement("tree");
         document.body.appendChild(this._div);
         
@@ -23,8 +27,12 @@ class Tree {
         this.x = x;
         this.y = y;
 
-        // dit vlot heeft kippen nodig
-        // ...
+        //Chickens on tree
+        this.chickens = new Array<Chicken>();
+        for (let i=0; i < Math.random() * 3 + 1; i++){
+            let x = i * 100;
+            this.chickens.push(new Chicken(this.game, x, -70, this));
+        }
     }
     
     public move():void {

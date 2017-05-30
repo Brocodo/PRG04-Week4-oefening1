@@ -1,12 +1,15 @@
 /// <reference path="chicken.ts"/>
 
 class Gun {
-    
+
+    private game:Game;
     private div: HTMLElement;
     private x:number;
     private y:number;
 
-    constructor(chicken:Chicken) {
+    constructor(g:Game, chicken:Chicken) {
+        this.game = g;
+
         this.div = document.createElement("gun");
         chicken.div.appendChild(this.div);
 
@@ -15,16 +18,20 @@ class Gun {
         
         this.div.style.transform = "translate("+this.x+"px, "+this.y+"px)";
 
-        this.fire();
+        let audioNewGun = new Audio();
+        audioNewGun.autoplay = true;
+        audioNewGun.loop = false;
+        audioNewGun.src = audioNewGun.canPlayType('audio/mp3') ? 'media/newgun.mp3': '';
     }
 
     public fire():void {
         // de globale positie van de gun kan je uitrekenen met getBoundingRect
         let rect:ClientRect = this.div.getBoundingClientRect();      
-        console.log("plaats een kogel op " + rect.left + " , " + rect.top);
-
-        // maak hier een bullet en voeg die toe aan de bullets array van de game
-        // ...
+        this.game.addBullet(new Bullet(rect.left, rect.top));
+        let audio = new Audio();
+        audio.autoplay = true;
+        audio.loop = false;
+        audio.src = audio.canPlayType('audio/mp3') ? 'media/gunshot.mp3': '';
     }
 
 }
