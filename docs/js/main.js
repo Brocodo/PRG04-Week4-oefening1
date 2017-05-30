@@ -128,7 +128,7 @@ var Gun = (function () {
         var audio = new Audio();
         audio.autoplay = true;
         audio.loop = false;
-        audio.src = audio.canPlayType('audio/mp3') ? 'media/gunshot.mp3' : '';
+        audio.src = audio.canPlayType('audio/mp3') ? 'media/gunshot.mp3' : 'media/gunshot.wav';
     };
     return Gun;
 }());

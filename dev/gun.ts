@@ -31,7 +31,7 @@ class Gun {
         let audio = new Audio();
         audio.autoplay = true;
         audio.loop = false;
-        audio.src = audio.canPlayType('audio/mp3') ? 'media/gunshot.mp3': '';
+        audio.src = audio.canPlayType('audio/mp3') ? 'media/gunshot.mp3': 'media/gunshot.wav';
     }
 
 }
